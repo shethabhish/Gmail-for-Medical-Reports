@@ -140,6 +140,7 @@ class App extends Component{
         <header className="App-header">
           <h1>Medical Reports</h1>
         </header>
+        <div class = "searchBar">
         <SearchBar
                 isSearchOptionsDisplay={this.state.isSearchOptionsDisplay}
                 onClickSearchDropDown={this.onClickSearchDropDown}
@@ -148,6 +149,8 @@ class App extends Component{
                 onChangeExcludeInput={this.onChangeExcludeInput}
                 handleKeyDown={this.handleKeyDown}
         />
+        </div>
+        <div class = "reports">
         <Reports
                 isDisplayTable={this.state.isDisplayTable}
                 searchResults={this.state.searchResults}
@@ -158,6 +161,7 @@ class App extends Component{
                 addTag={this.addTag}
                 removeTag={this.removeTag}
               />
+        </div>
       </div>
     );
   }

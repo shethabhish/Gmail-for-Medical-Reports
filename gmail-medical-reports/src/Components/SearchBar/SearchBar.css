@@ -17,9 +17,8 @@
   z-index: 2;
 }
 .searchContainerDropDown {
-  width: 75%;
+  width: 50%;
   position: relative;
-  margin: 0;
   margin-bottom: 0 !important;
 }
 
