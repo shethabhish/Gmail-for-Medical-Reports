@@ -50,8 +50,8 @@ class Reports extends Component {
                                 <tr onClick={() => this.props.onClick(data)}>
                                     <th scope="row">{data.id}</th>
                                     <td>{DATA[data.id].location.substring(0, 105)}...</td>
-                                    <td>{this.props.tags.goodreport.includes(data.id) ? "#goodreport" : null}
-                                        {this.props.tags.conditionpresent.includes(data.id) ? " #conditionpresent" : null}</td>
+                                    <td>{this.props.tags.goodreport.includes(data.id) ? "goodreport" : null}
+                                        {this.props.tags.conditionpresent.includes(data.id) ? "conditionpresent" : null}</td>
                                 </tr>
                             )}
                         </tbody>
@@ -85,15 +85,15 @@ class Reports extends Component {
                     </nav>
                     : null}
                 {this.props.isDisplayTxtFile ?
-                    <div>
+                    <div style = {{color: "white"}}>
                         {this.props.tags.goodreport.includes(this.props.idToPass) ?
-                            <button type="button" class="btn btn-danger tagbutton" onClick={() => this.props.removeTag("goodreport", this.props.idToPass)}>- goodreport</button>
-                            : <button type="button" class="btn btn-success tagbutton" onClick={() => this.props.addTag("goodreport", this.props.idToPass)}>+ goodreport</button>}
+                            <button type="button" class="btn btn-danger" style={{marginRight: '10px'}} onClick={() => this.props.removeTag("goodreport", this.props.idToPass)}> <i class="fas fa-smile"></i> - goodreport </button>
+                            : <button type="button" class="btn btn-success" style={{marginRight: '10px'}} onClick={() => this.props.addTag("goodreport", this.props.idToPass)}> <i class="far fa-smile"></i> + goodreport </button>}
 
                         {this.props.tags.conditionpresent.includes(this.props.idToPass) ?
-                            <button type="button" class="btn btn-danger tagbutton" onClick={() => this.props.removeTag("conditionpresent", this.props.idToPass)}>- conditionpresent</button>
-                            : <button type="button" class="btn btn-success tagbutton" onClick={() => this.props.addTag("conditionpresent", this.props.idToPass)}>+ conditionpresent</button>}
-                        <iframe title="some value" width="100%" height="800px" src={`${DATA[this.props.idToPass].url}`}></iframe>
+                            <button type="button" class="btn btn-danger" onClick={() => this.props.removeTag("conditionpresent", this.props.idToPass)}> <i class="far fa-frown"></i> - conditionpresent </button>
+                            : <button type="button" class="btn btn-success " onClick={() => this.props.addTag("conditionpresent", this.props.idToPass)}> <i class="far fa-frown"></i> + conditionpresent </button>}
+                        <iframe style = {{background:"white", marginTop:"30px"}} title="some value" width="100%" height="800px" src={`${DATA[this.props.idToPass].url}` }></iframe>
                     </div>
                     : null}
             </div>

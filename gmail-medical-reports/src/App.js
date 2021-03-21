@@ -52,22 +52,22 @@ class App extends Component{
     let searchItems = search.toLowerCase().split(' ');
     let excludedItems = excludedWords.toLowerCase().split(' ');
     let searchResultsItems = [];
-    for (let book in library) {
+    for (let data in library) {
       let wordChecker = true;
       for (let k = 0; k < searchItems.length; k++) {
-        if (!library[book].dictionary[searchItems[k]]) {
+        if (!library[data].dictionary[searchItems[k]]) {
           wordChecker = false;
         }
       }
       if (excludedWords.length > 0) {
         for (let l = 0; l < excludedItems.length; l++) {
-          if (library[book].dictionary[excludedItems[l]]) {
+          if (library[data].dictionary[excludedItems[l]]) {
             wordChecker = false;
           }
         }
       }
       if (wordChecker === true) {
-        searchResultsItems.push(library[book]);
+        searchResultsItems.push(library[data]);
       }
     }
     this.setState({ ...this.state, searchResults: searchResultsItems, isDisplayTable: true, isDisplayTxtFile: false }, () => console.log(this.state.searchResults));
@@ -78,8 +78,8 @@ class App extends Component{
     }
   }
 
-  onClickBookRow = (book) => {
-    this.setState({ ...this.state, isDisplayTxtFile: true, idToPass: book.id, isDisplayTable: false })
+  onClickDataRow = (data) => {
+    this.setState({ ...this.state, isDisplayTxtFile: true, idToPass: data.id, isDisplayTable: false })
   }
 
   onClickSearchDropDown = () => {
@@ -96,10 +96,10 @@ class App extends Component{
     const { tags } = this.state;
     let tempState=[];
     let currentTag = tags[item];
-    for(let book in DATA){
+    for(let data in DATA){
       for(let i=0; i<currentTag.length; i++){
-        if(DATA[book].id === currentTag[i]){
-          tempState.push(DATA[book]);
+        if(DATA[data].id === currentTag[i]){
+          tempState.push(DATA[data]);
         }
       }
     }
@@ -141,27 +141,37 @@ class App extends Component{
           <h1>Medical Reports</h1>
         </header>
         <div class = "searchBar">
-        <SearchBar
-                isSearchOptionsDisplay={this.state.isSearchOptionsDisplay}
-                onClickSearchDropDown={this.onClickSearchDropDown}
-                onClickSearchBtn={this.searchData}
-                onChangeSearchInput={this.onChangeSearchInput}
-                onChangeExcludeInput={this.onChangeExcludeInput}
-                handleKeyDown={this.handleKeyDown}
-        />
+          <SearchBar
+                  isSearchOptionsDisplay={this.state.isSearchOptionsDisplay}
+                  onClickSearchDropDown={this.onClickSearchDropDown}
+                  onClickSearchBtn={this.searchData}
+                  onChangeSearchInput={this.onChangeSearchInput}
+                  onChangeExcludeInput={this.onChangeExcludeInput}
+                  handleKeyDown={this.handleKeyDown}
+          />
         </div>
-        <div class = "reports">
-        <Reports
-                isDisplayTable={this.state.isDisplayTable}
-                searchResults={this.state.searchResults}
-                isDisplayTxtFile={this.state.isDisplayTxtFile}
-                idToPass={this.state.idToPass}
-                onClick={this.onClickBookRow}
-                tags={this.state.tags}
-                addTag={this.addTag}
-                removeTag={this.removeTag}
-              />
+        <div class = "row">
+          <div class = "col col-md-2 leftcol no-gutters">
+                <div className="tags" onClick={()=> this.displayInbox()}><i class="fas fa-inbox tags" ></i> Inbox</div>
+                <div className="tags" onClick={()=> this.displayTagResult("goodreport")}><i class="fas fa-smile"></i> goodreport</div>
+                <div className="tags" onClick={()=> this.displayTagResult("conditionpresent")}><i class="far fa-frown"></i> conditionpresent</div>
+          </div>
+          <div class = "col">
+            <div class = "reports">
+              <Reports
+                      isDisplayTable={this.state.isDisplayTable}
+                      searchResults={this.state.searchResults}
+                      isDisplayTxtFile={this.state.isDisplayTxtFile}
+                      idToPass={this.state.idToPass}
+                      onClick={this.onClickDataRow}
+                      tags={this.state.tags}
+                      addTag={this.addTag}
+                      removeTag={this.removeTag}
+                    />
+            </div>
+          </div>
         </div>
+        
       </div>
     );
   }

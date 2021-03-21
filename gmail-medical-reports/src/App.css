@@ -16,7 +16,19 @@ h1 {
   margin-top: 2em;
 }
 
-.reports {
-  display: flex;
-  justify-content: center;
+.tags {
+  text-decoration: none;
+  color: white;
+  margin: 7px;
+  font-size: medium;
+  transition: all 0.5s;
+}
+.tags:hover {
+  color: steelblue;
+  opacity: 60%;
+  cursor: pointer;
+}
+
+.leftcol {
+  margin: 50px 0 0 80px;
 }
