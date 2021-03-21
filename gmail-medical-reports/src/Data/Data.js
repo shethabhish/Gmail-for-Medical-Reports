@@ -155,3 +155,5 @@ export const DATA = [
         id: 50,
         location: raw('./730-0.txt')    }
 ];
+
+export default DATA;
